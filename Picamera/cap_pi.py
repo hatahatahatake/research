@@ -17,7 +17,7 @@ from time import sleep
 # VideoCaptureのインスタンスを作成する。
 # 引数でカメラを選べれる。
 # 0は内蔵カメラ、1は入力カメラ
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 cap.set(4, 700)  # Width
 cap.set(4, 600)  # Heigh
 cap.set(5, 15)   # FPS
@@ -31,7 +31,7 @@ output_name = output_path + '/' + setnumber
 
 # ディレクトリ確認用(うまく行かなかった時用)
 import os
-print(os.path.exists(output_path))
+print((os.path.exists(output_path)))
 
 print('start')
 
