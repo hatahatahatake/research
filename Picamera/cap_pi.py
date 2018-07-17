@@ -1,6 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # Webカメラ 画像取得コード　New!7/10
 # raspberryPi3 コンパイル用
-# -*- coding: utf-8 -*-
 
 import cv2
 import glob
