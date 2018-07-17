@@ -41,7 +41,7 @@ while True:
     ret, frame = cap.read()
 
     # sleep を使う方法
-    time.sleep(30)
+    time.sleep(15)
 
     # 動画を取得
     cv2.imshow('Raw Frame', frame)
