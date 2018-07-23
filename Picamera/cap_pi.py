@@ -18,7 +18,7 @@ from time import sleep
 # 引数でカメラを選べれる。
 # 0は内蔵カメラ、1は入力カメラ
 cap = cv2.VideoCapture(0)
-cap.set(4, 700)  # Width
+cap.set(5, 700)  # Width
 cap.set(4, 600)  # Heigh
 cap.set(5, 15)   # FPS
 
