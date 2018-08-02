@@ -19,7 +19,9 @@ cap = cv2.VideoCapture(0)
 #cap.set(5, 20)   # FPS
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
+fps = int(cap.get(cv2.CAP_PROP_FPS))
+size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+out = cv2.VideoWriter('output.avi', fourcc, fps, size)
 
 # ディレクトリパス指定
 sys.path.append('Desktop/iMac-Desktop/git/research_test/raspy/images')
