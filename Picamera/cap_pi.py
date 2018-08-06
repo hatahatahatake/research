@@ -18,9 +18,9 @@ from time import sleep
 # 引数でカメラを選べれる。
 # 0は内蔵カメラ、1は入力カメラ
 cap = cv2.VideoCapture(0)
-cap.set(5, 700)  # Width
+cap.set(4, 800)  # Width
 cap.set(4, 600)  # Heigh
-cap.set(5, 15)   # FPS
+cap.set(5, 20)   # FPS
 
 # ディレクトリパス指定 raspberryPi 用ディレクトリ
 sys.path.append('/Desktop/research/Picamera/images')
@@ -48,6 +48,7 @@ while True:
 
     # raspy/image ディレクトリに取得画像を自動保存
     cv2.imwrite(output_name + str(i) + ".png", frame)
+    print(setnumber + str(i) + ".png")
     i += 1
 
     # キー入力を1ms待って、k が27（ESC）だったらBreakする
