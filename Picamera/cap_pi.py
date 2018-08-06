@@ -18,9 +18,12 @@ from time import sleep
 # 引数でカメラを選べれる。
 # 0は内蔵カメラ、1は入力カメラ
 cap = cv2.VideoCapture(0)
-cap.set(5, 700)  # Width
-cap.set(4, 600)  # Heigh
-cap.set(5, 15)   # FPS
+#cap.set(4, 700)  # Width
+#cap.set(4, 600)  # Heigh
+#cap.set(5, 15)   # FPS
+
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
 
 # ディレクトリパス指定 raspberryPi 用ディレクトリ
 sys.path.append('/Desktop/research/Picamera/images')
@@ -36,26 +39,36 @@ print(os.path.exists(output_path))
 print('start')
 
 i = 1;
-while True:
+while(cap.isOpened()):
     # VideoCaptureから1フレーム読み込む
     ret, frame = cap.read()
 
-    # sleep を使う方法
-    time.sleep(15)
+    if ret == True:
+        frame = cv2.flip(frame, 180)
 
-    # 動画を取得
-    cv2.imshow('Raw Frame', frame)
+        out.write(frame)
 
-    # raspy/image ディレクトリに取得画像を自動保存
-    cv2.imwrite(output_name + str(i) + ".png", frame)
-    i += 1
+        # 動画を取得
+        cv2.imshow("FLAME IMAGE", frame)
+    
+        time.sleep(30)
 
-    # キー入力を1ms待って、k が27（ESC）だったらBreakする
-    k = cv2.waitKey(1)
-    if k == 27:
-        break
+        # raspy/image ディレクトリに取得画像を自動保存
+        cv2.imwrite(output_name + str(i) + ".png", frame)
+        print(setnumber + str(i) + ".png")
+        i += 1
+
+        # キー入力を1ms待って、k が27（ESC）だったらBreakする
+        k = cv2.waitKey(1)
+        if k == 27:
+            break
+        
         print('end')
+    
+    else:
+        break
 
 # キャプチャをリリースして、ウィンドウをすべて閉じる
 cap.release()
+out.release()
 cv2.destroyAllWindows()
