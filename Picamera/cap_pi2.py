@@ -1,3 +1,6 @@
+#!usr/bin/python3
+# -*- coding: utf-8 -*-
+
 # Webカメラ 画像取得コード　New!8/2
 
 import cv2
@@ -21,7 +24,14 @@ cap = cv2.VideoCapture(0)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 fps = int(cap.get(cv2.CAP_PROP_FPS))
 size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+<<<<<<< HEAD
 out = cv2.VideoWriter('output.avi', fourcc, fps, size)
+=======
+out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
+>>>>>>> 47a3e520e0f25b7bd1b8766f8078ee266baaf3fb
+
+if (cap.isOpened()== False):
+    print("Error opening video stream or file")
 
 # ディレクトリパス指定
 sys.path.append('Desktop/iMac-Desktop/git/research_test/raspy/images')
@@ -37,7 +47,7 @@ print(os.path.exists(output_path))
 print('start')
 
 i = 1;
-while True:
+while (cap.isOpened()):
     # VideoCaptureから1フレーム読み込む
     ret, frame = cap.read()
 
@@ -56,9 +66,9 @@ while True:
         print(setnumber + str(i) + ".png")
         i += 1
 
-        #k = cv2.waitKey(1)
-        #if k == 27:
-        #    break
+        k = cv2.waitKey(1)
+        if k == 27:
+            break
 
     else:
         break
@@ -67,5 +77,5 @@ print('end')
 
 # キャプチャをリリースして、ウィンドウをすべて閉じる
 cap.release()
-out.release()
+#out.release()
 cv2.destroyAllWindows()
