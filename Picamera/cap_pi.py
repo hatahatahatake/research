@@ -18,29 +18,17 @@ from time import sleep
 # 引数でカメラを選べれる。
 # 0は内蔵カメラ、1は入力カメラ
 cap = cv2.VideoCapture(0)
-<<<<<<< HEAD
 cap.set(4, 700)  # Width
 cap.set(4, 600)  # Heigh
 cap.set(5, 15)   # FPS
 
 #fourcc = cv2.VideoWriter_fourcc(*'XVID')
 #out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
-=======
-<<<<<<< HEAD
-cap.set(4, 800)  # Width
-cap.set(4, 600)  # Heigh
-cap.set(5, 20)   # FPS
-=======
 #cap.set(4, 700)  # Width
 #cap.set(4, 600)  # Heigh
 #cap.set(5, 15)   # FPS
-
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
->>>>>>> 47a3e520e0f25b7bd1b8766f8078ee266baaf3fb
->>>>>>> 4754df6897203148f5b52e115050a8a8bc3cf335
-
 # ディレクトリパス指定 raspberryPi 用ディレクトリ
+
 sys.path.append('/Desktop/research/Picamera/images')
 
 setnumber = "cap_img"
@@ -61,22 +49,10 @@ while(cap.isOpened()):
     if ret == True:
         frame = cv2.flip(frame, 180)
 
-<<<<<<< HEAD
-=======
-        out.write(frame)
-
-<<<<<<< HEAD
-    # raspy/image ディレクトリに取得画像を自動保存
-    cv2.imwrite(output_name + str(i) + ".png", frame)
-    print(setnumber + str(i) + ".png")
-    i += 1
-=======
->>>>>>> 4754df6897203148f5b52e115050a8a8bc3cf335
-        # 動画を取得
+       # 動画を取得
         cv2.imshow("FRAME IMAGE", frame)
     
         time.sleep(30)
->>>>>>> 47a3e520e0f25b7bd1b8766f8078ee266baaf3fb
 
         # raspy/image ディレクトリに取得画像を自動保存
         cv2.imwrite(output_name + str(i) + ".png", frame)
