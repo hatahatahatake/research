@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-# Webカメラ 画像取得コード　New!7/23
-# raspberryPi3 コンパイル用
+# Webカメラ 画像取得コード　New!8/6
+# raspberryPi3 コンパイル用(こっちを使う！)
 
 import cv2
 import glob
@@ -18,12 +18,12 @@ from time import sleep
 # 引数でカメラを選べれる。
 # 0は内蔵カメラ、1は入力カメラ
 cap = cv2.VideoCapture(0)
-#cap.set(4, 700)  # Width
-#cap.set(4, 600)  # Heigh
-#cap.set(5, 15)   # FPS
+cap.set(4, 700)  # Width
+cap.set(4, 600)  # Heigh
+cap.set(5, 15)   # FPS
 
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
+#fourcc = cv2.VideoWriter_fourcc(*'XVID')
+#out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
 
 # ディレクトリパス指定 raspberryPi 用ディレクトリ
 sys.path.append('/Desktop/research/Picamera/images')
@@ -46,10 +46,8 @@ while(cap.isOpened()):
     if ret == True:
         frame = cv2.flip(frame, 180)
 
-        out.write(frame)
-
         # 動画を取得
-        cv2.imshow("FLAME IMAGE", frame)
+        cv2.imshow("FRAME IMAGE", frame)
     
         time.sleep(30)
 
@@ -59,16 +57,15 @@ while(cap.isOpened()):
         i += 1
 
         # キー入力を1ms待って、k が27（ESC）だったらBreakする
-        k = cv2.waitKey(1)
+        k = cv2.waitKey()
         if k == 27:
             break
-        
-        print('end')
     
     else:
         break
+    
+#print('end')
 
 # キャプチャをリリースして、ウィンドウをすべて閉じる
 cap.release()
-out.release()
 cv2.destroyAllWindows()

@@ -24,7 +24,11 @@ cap = cv2.VideoCapture(0)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 fps = int(cap.get(cv2.CAP_PROP_FPS))
 size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+<<<<<<< HEAD
 out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
+=======
+out = cv2.VideoWriter('output.avi', fourcc, fps, size)
+>>>>>>> 28329ed5fa1657a9c994a8813218b06d6a938f6b
 
 if (cap.isOpened()== False):
     print("Error opening video stream or file")
